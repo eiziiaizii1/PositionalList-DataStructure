@@ -28,13 +28,13 @@ public class LinkedPositionalList<T> implements PositionalList<T>{
         }
         @Override
         public T getElement() throws IllegalStateException {
-            if(next == null) throw new IllegalStateException("MyPositionList.Position is not valid");
+            if(next == null) throw new IllegalStateException("Position is not valid");
             return data;
         }
     }
 
-    private Node<T> header;
-    private Node<T> trailer;
+    private final Node<T> header;
+    private final Node<T> trailer;
     private int size = 0;
 
     public LinkedPositionalList(){
@@ -43,21 +43,21 @@ public class LinkedPositionalList<T> implements PositionalList<T>{
         header.setNext(trailer);
     }
 
-    // Cast MyPositionList.Position to Node
+    // Cast Position to Node
     private Node<T> validate(Position<T> p) throws IllegalArgumentException{
         if(!(p instanceof Node))
-            throw new IllegalArgumentException("Invalid MyPositionList.Position");
+            throw new IllegalArgumentException("Invalid Position");
         Node<T> node = (Node<T>) p;
         if(node.getNext() == null)
             throw new IllegalArgumentException("p is not in th list");
         return node;
     }
 
-    // Cast Node to MyPositionList.Position
+    // Cast Node to Position
     private Position<T> position(Node<T> node){
         if(node == header || node == trailer)
             return null;
-        return node; // Returns node as MyPositionList.Position
+        return node; // Returns node as Position
     }
 
     @Override
